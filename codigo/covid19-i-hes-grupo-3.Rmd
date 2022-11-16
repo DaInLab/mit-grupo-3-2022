@@ -6,14 +6,9 @@ author:
 - Cainã Guari
 date: "`r Sys.Date()`"
 output:
+  word_document: default
+  pdf_document: default
   html_document: default
-<<<<<<< HEAD
-  word_document: default
-  pdf_document: default
-=======
-  pdf_document: default
-  word_document: default
->>>>>>> 1479dd5853d6157bda83cfcdc1ef09d7b3046ae4
 ---
 
 ```{r setup, include=FALSE}
