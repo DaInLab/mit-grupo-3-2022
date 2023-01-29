@@ -1,12 +1,27 @@
 ---
 title: "Covid - DataScience"
+output: pdf_document
+---
+author:
+
+ - Cainã Brinatti Guari
+ - Ricardo Missão
+ - Richerland Medeiros
+ - Gustavo Rodrigues de Oliveira
+ - Washington Luiz Tomaz
+
+---
+
+---
+
 output:
   pdf_document: default
   html_document: default
 date: "2023-01-01"
 ---
 
-```{r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Lendo o arquivo em .xlsx
 if (!("readxl") %in% installed.packages()) install.packages("readxl")
 library(readxl)
@@ -39,7 +54,8 @@ total_casos <- nrow(dbf.xlsx)
 total_casos  
 ```
 
-```{r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 ## Gráfico 1 Faixa Etária dos respondentes
 casos_idade <- table(dbf.xlsx$idade)
 casos_idade
@@ -61,7 +77,8 @@ graph.idade <- barplot(casos_idade,
 text(x = graph.idade, y = casos_idade, label = unname(casos_idade), cex=1, pos=3)
 axis(1, at=graph.idade, labels=paste("(", pct_idade, ")"), tick=F, las=1, line=-1.0, cex.axis= 1.1) 
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE} 
+
 #Cálculo da porcentagem das faixas etárias
 casos_idade_concat <- 0
 pct_idade3 <- paste0(round(unname(casos_idade_concat) / sum(unname(casos_idade_concat)) * 100,0), "%")
@@ -79,7 +96,8 @@ graph.idade_concat <- barplot(casos_idade_concat,
 text(x = graph.idade_concat, y = casos_idade_concat, label = unname(casos_idade_concat), cex=1, pos=3)
 axis(1, at=graph.idade_concat, labels=paste("(", pct_idade3, ")"), tick=F, las=1, line=-1.0, cex.axis= 1.1)
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Dados do Gráfico 2
 casos_genero <- table(dbf.xlsx$genero)
 casos_genero
@@ -98,7 +116,8 @@ pie(casos_genero,
     labels = paste(names(casos_genero), "-", pct_genero),
     main = "Gráfico 2: Quantidade de respondentes por gênero")
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Dados do Gráfico 3
 casos_conjugal <- table(dbf.xlsx$situacao_conjugal)
 casos_conjugal
@@ -118,7 +137,8 @@ pie(casos_conjugal,
     labels = paste(names(casos_conjugal), "-", pct_conjugal),
     main = "Gráfico 3: Quantidade de respondentes por sitação conjugal")
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Dados do Gráfico 4
 casos_emprego <- table(dbf.xlsx$situacao_empregaticia)
 casos_emprego
@@ -178,7 +198,9 @@ pct_estado
 #[1] "2 %"  "90 %" "8 %"
 names(pct_estado) <-c("Amazonas", "São Paulo", "Não Respondeu")
 ```
-``` {r, echo=FALSE}
+
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 #Gráfico 5: Quantidade de respondentes por estado
 # Gráfico tipo "pizza"
 pie(casos_estado,
@@ -201,7 +223,8 @@ pct_ies
 names(casos_ies) <- c("ETEC", "FMJundiaí", "FJaú", "Fatec Catanduva", "FGV", "IMESB",
                           "SEBRAE", "UFSCar", "UNESP", "UNIARA", "UNOPAR")
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Gráfico 6 do tipo barra por nome da Instituição de Ensino Superior
 graph.casos_ies <- barplot(casos_ies,
                                horiz = F,
@@ -231,7 +254,8 @@ graph.casos_ies <- barplot(casos_ies,
 text(x = graph.casos_ies, y = casos_ies, label = unname(casos_ies), cex=1, pos=3)
 axis(1, at=graph.casos_ies, labels=paste("(", pct_ies , ")"), tick=F, las=1, line=-1.0, cex.axis= 1.1)
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 # Dados do Gráfico 7
 casos_ensino<- table(dbf.xlsx$nivel_ensino, exclude = NULL)
 casos_ensino
@@ -261,7 +285,8 @@ pct_tipo_ies <- paste(round(unname(casos_tipo_ies) / sum(unname(casos_tipo_ies))
 pct_tipo_ies  
 #[1] "2 %"  "12 %" "87 %" 
 ```
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
+
 #Gráfico 8: Quantidade de respondentes por tipo de mantenedora de instituição de ensino
 # Gráfico tipo "pizza"
 pie(casos_tipo_ies,
@@ -632,7 +657,7 @@ pie(casos_socializacao,
     main = "Gráfico 22: Capacidade de socialização")
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 23
 casos_bem_estar <- table(dbf.xlsx$bem_estar_psicologico, exclude = NULL)
@@ -658,7 +683,7 @@ pie(casos_bem_estar,
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 24: Qualidade de vida
 #Carregando o texto e eliminando os NA (missing data)
@@ -896,7 +921,7 @@ pie(casos_vacinado,
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 33: Dificuldades acadêmicas durante a pandelia
 #Carregando o texto e eliminando os NA (missing data)
@@ -1061,7 +1086,7 @@ axis(1, at=graph.perfil.despesas, labels=paste("(", pct_perfil_despesas, ")"), t
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 39: Dificuldades financeiras durante a pandelia
 #Carregando o texto e eliminando os NA (missing data)
@@ -1092,7 +1117,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2, # maior "min.freq", mai
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 40
 casos_fechar_ies <- table(dbf.xlsx$decisao_fechar, exclude = NULL)
@@ -1116,7 +1141,7 @@ pie(casos_fechar_ies,
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 41: IES fez de positivo na pandemia
 #Carregando o texto e eliminando os NA (missing data)
@@ -1147,7 +1172,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2, # maior "min.freq", mai
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 42: IES poderia melhorar na pandemia
 #Carregando o texto e eliminando os NA (missing data)
@@ -1178,7 +1203,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2, # maior "min.freq", mai
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 #Gráfico 43: IES poderia melhor ajudar na pandemia
 #Carregando o texto e eliminando os NA (missing data)
@@ -1209,7 +1234,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2, # maior "min.freq", mai
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 44
 casos_ansiedade <- table(dbf.xlsx$nivel_ansiedade, exclude = NULL)
@@ -1235,7 +1260,7 @@ pie(casos_ansiedade,
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 45
 casos_ansiedade_planejamento <- table(dbf.xlsx$ansiedade_planejamento, exclude = NULL)
@@ -1259,7 +1284,7 @@ pie(casos_ansiedade_planejamento,
 
 ```
 
-``` {r, echo=FALSE}
+```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 46
 casos_ansiedade_longo <- table(dbf.xlsx$ansiedade_longo_prazo, exclude = NULL)
