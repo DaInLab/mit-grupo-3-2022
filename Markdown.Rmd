@@ -1,6 +1,8 @@
 ---
 title: "Covid - DataScience"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 author:
 
