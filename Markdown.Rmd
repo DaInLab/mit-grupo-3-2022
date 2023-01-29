@@ -3,6 +3,7 @@ title: "Covid - DataScience"
 output:
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 author:
 
@@ -79,25 +80,7 @@ graph.idade <- barplot(casos_idade,
 text(x = graph.idade, y = casos_idade, label = unname(casos_idade), cex=1, pos=3)
 axis(1, at=graph.idade, labels=paste("(", pct_idade, ")"), tick=F, las=1, line=-1.0, cex.axis= 1.1) 
 ```
-```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE} 
 
-#Cálculo da porcentagem das faixas etárias
-casos_idade_concat <- 0
-pct_idade3 <- paste0(round(unname(casos_idade_concat) / sum(unname(casos_idade_concat)) * 100,0), "%")
-pct_idade3
-#[1] "21%" "27%" "6%"  "6%"  "13%" "10%" "8%"  "8%"  "2%"
-
-# Gráfico do tipo barra das faixas etárias
-graph.idade_concat <- barplot(casos_idade_concat, 
-                               main = "Gráfico 1: Faixa etária dos respondentes redefinida",
-                               xlab = "Faixa Etária", 
-                               ylab = "Respondentes",
-                               col = "orange",
-                               horiz = F,
-                               ylim = c(0,max(casos_idade_concat) + 5))
-text(x = graph.idade_concat, y = casos_idade_concat, label = unname(casos_idade_concat), cex=1, pos=3)
-axis(1, at=graph.idade_concat, labels=paste("(", pct_idade3, ")"), tick=F, las=1, line=-1.0, cex.axis= 1.1)
-```
 ```{r echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=TRUE, warning=FALSE} 
 
 # Dados do Gráfico 2
